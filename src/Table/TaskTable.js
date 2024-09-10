@@ -10,9 +10,12 @@ import { useEffect, useState } from 'react';
 import TaskTableCell from './TaskTableCell/TaskTableCell';
 import TextOrInput from './TextOrInput/TextOrInput';
 import LabelOrSelect from './LabelOrSelect/LabelOrSelect';
+import TextOrDatePicker from './TextOrDatePicker/TextOrDatePicker';
+import 'react-datepicker/dist/react-datepicker.css'
+
 
 const rows2 = [
-    { id: 1, Task: "Task 1", Priority: "High", Difficulty: "Hard", Status: "In Progress", Deadline: "2021-10-10" },
+    { id: 1, Task: "Task 1", Priority: "High", Difficulty: "Hard", Status: "In Progress", Deadline: new Date().toISOString().split('T')[0] },
     { id: 2, Task: "Task 2", Priority: "Low", Difficulty: "Easy", Status: "Done", Deadline: "2021-10-11" },
     { id: 3, Task: "Task 3", Priority: "Medium", Difficulty: "Medium", Status: "In Progress", Deadline: "2021-10-12" },
     { id: 4, Task: "Task 4", Priority: "High", Difficulty: "Hard", Status: "In Progress", Deadline: "2021-10-13" },
@@ -20,7 +23,6 @@ const rows2 = [
 ]
 
 export default function TaskTable() {
-
     const [rows, setRows] = useState(rows2);
 
     const addRow = () => {
@@ -101,12 +103,7 @@ export default function TaskTable() {
                                     />
                                 </TaskTableCell>
                                 <TaskTableCell sx={{ width: "200px" }}>
-                                    <TextOrInput
-                                        initialState={row.Deadline}
-                                        state="Deadline"
-                                        stateSetter={setRows}
-                                        index={row.id}
-                                    />
+                                    <TextOrDatePicker initialState={row.Deadline} state="Deadline" stateSetter={setRows} index={row.id} />
                                 </TaskTableCell>
                             </TableRow>
                         ))}
