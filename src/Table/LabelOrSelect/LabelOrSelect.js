@@ -51,7 +51,7 @@ const LabelOrSelect = ({ initialState, options, stateSetter, state, index }) => 
                     >
                         {options.map((option) => (
                             <MenuItem key={option} value={option}>
-                                {option}
+                                <Chip sx={{minWidth: "129px"}} color={labels.find(l => l.priority === option.toUpperCase()).color} label={option} variant='outlined' />
                             </MenuItem>
                         ))}
                     </Select>
@@ -63,7 +63,7 @@ const LabelOrSelect = ({ initialState, options, stateSetter, state, index }) => 
     const labelColor = labels.find(l => l.priority === label.toUpperCase()).color;
     return (
         <Box sx={{ height: "56px", display: "flex", alignItems: "center" }}>
-            <Chip sx={{ minWidth:"129px" }} color={labelColor} label={label} onClick={() => setIsEditing(true)} />
+            <Chip sx={{ minWidth:"129px", marginLeft: "14px" }} variant='outlined' color={labelColor} label={label} onClick={() => setIsEditing(true)} />
         </Box>
     )
 }
