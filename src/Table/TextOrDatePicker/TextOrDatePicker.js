@@ -34,11 +34,22 @@ function TextOrDatePicker({ initialState, stateSetter, state, index }) {
 
     return (
         <Box sx={{ height: "56px", display: "flex", alignItems: "center" }}>
-            <Typography sx={{ minWidth: "129px" }} onClick={() => setIsEditing(true)}>{label}</Typography>
+            <Typography sx={{ minWidth: "129px" }} onClick={() => setIsEditing(true)}>
+                {dateToHungarianString(label)}
+            </Typography>
         </Box>
     );
 
 
+}
+
+const dateToHungarianString = (date) => {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = dateObj.toLocaleString('default', { month: 'short' });
+    const day = dateObj.getDate();
+
+    return `${year} ${month} ${day}`;
 }
 
 export default TextOrDatePicker
