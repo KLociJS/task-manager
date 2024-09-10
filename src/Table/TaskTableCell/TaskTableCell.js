@@ -4,7 +4,7 @@ import React from 'react'
 const TaskTableCell = ({ children, ...props }) => {
 
     return (
-        <TableCell {...props}>
+        <TableCell {...props} size='small'>
             {children}
         </TableCell>
     );
