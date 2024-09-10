@@ -26,7 +26,7 @@ const TextOrInput = ({ initialState, stateSetter, state, index }) => {
         return (
             <ClickAwayListener onClickAway={() => setIsEditing(false)}>
                 <Box>
-                    <TextField value={label} onChange={(e) => setLabel(e.target.value)} onKeyDown={(e) => handleEnterKeyDown(e)} />
+                    <TextField autoFocus open={true} value={label} onChange={(e) => setLabel(e.target.value)} onKeyDown={(e) => handleEnterKeyDown(e)} />
                 </Box>
             </ClickAwayListener>
         );
@@ -34,7 +34,7 @@ const TextOrInput = ({ initialState, stateSetter, state, index }) => {
 
     return (
         <Box sx={{ height: "56px", display: "flex", alignItems: "center" }}>
-            <Typography onClick={() => setIsEditing(true)}>{label}</Typography>
+            <Typography sx={{minWidth: "129px"}} onClick={() => setIsEditing(true)}>{label}</Typography>
         </Box>
     );
 }

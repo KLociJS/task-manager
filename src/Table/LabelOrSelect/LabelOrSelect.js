@@ -1,16 +1,16 @@
-import { Box, Chip, ClickAwayListener, Select } from '@mui/material';
+import { Box, Chip, ClickAwayListener, MenuItem, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 
 const labels = [
-    {priority: "LOW", color: "info"},
-    {priority: "MEDIUM", color: "warning"},
-    {priority: "HIGH", color: "error"},
-    {priority: "TODO", color: "info"},
-    {priority: "IN PROGRESS", color: "warning"},
-    {priority: "DONE", color: "success"},
-    {priority: "EASY", color: "success"},
-    {priority: "MED", color: "warning"},
-    {priority: "HARD", color: "error"},
+    { priority: "LOW", color: "info" },
+    { priority: "MEDIUM", color: "warning" },
+    { priority: "HIGH", color: "error" },
+    { priority: "TODO", color: "info" },
+    { priority: "IN PROGRESS", color: "warning" },
+    { priority: "DONE", color: "success" },
+    { priority: "EASY", color: "success" },
+    { priority: "MED", color: "warning" },
+    { priority: "HARD", color: "error" },
 
 
 ];
@@ -39,8 +39,21 @@ const LabelOrSelect = ({ initialState, options, stateSetter, state, index }) => 
         return (
             <ClickAwayListener onClickAway={() => setIsEditing(false)}>
                 <Box>
-                    <Select native defaultOpen variant="outlined" size="small" value={label} onChange={(e) => handleSelect(e)} >
-                        {options.map((option) => (<option value={option}>{option} </option>))}
+                    <Select
+                        open={isEditing}
+                        onClose={() => setIsEditing(false)}
+                        onOpen={() => setIsEditing(true)}
+                        variant="outlined"
+                        size="small"
+                        value={label}
+                        onChange={(e) => handleSelect(e)}
+                        sx={{minWidth: "129px"}}
+                    >
+                        {options.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                        ))}
                     </Select>
                 </Box>
             </ClickAwayListener>
@@ -49,8 +62,8 @@ const LabelOrSelect = ({ initialState, options, stateSetter, state, index }) => 
 
     const labelColor = labels.find(l => l.priority === label.toUpperCase()).color;
     return (
-        <Box sx={{height: "56px", display: "flex", alignItems: "center"}}>
-            <Chip color={labelColor} label={label} onClick={() => setIsEditing(true)} />
+        <Box sx={{ height: "56px", display: "flex", alignItems: "center" }}>
+            <Chip sx={{ minWidth:"129px" }} color={labelColor} label={label} onClick={() => setIsEditing(true)} />
         </Box>
     )
 }
